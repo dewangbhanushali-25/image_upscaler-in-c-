@@ -1,0 +1,81 @@
+IMAGE UPSCALER LIBRARY (C)
+│
+├── STAGE 0: CONCEPTS (thinking only)
+│   ├── Image ≠ JPG/PNG
+│   ├── Image = 2D discrete signal
+│   ├── Pixels live in RAM
+│   ├── Upscaling = resampling + reconstruction
+│
+├── STAGE 1: CORE IMAGE TYPE (foundation)
+│   ├── upsr_image_t
+│   │   ├── width
+│   │   ├── height
+│   │   ├── channels
+│   │   └── uint8_t *data
+│   ├── Memory allocation
+│   ├── Pixel addressing math
+│   └── NO file formats here
+│
+├── STAGE 2: IMAGE I/O (bridge to real world)
+│   ├── stb_image (decode)
+│   │   └── JPG / PNG → raw pixels
+│   ├── Wrap into upsr_image_t
+│   ├── Pixel manipulation (invert, grayscale)
+│   └── stb_image_write (encode)
+│
+├── STAGE 3: MATHEMATICAL UPSCALING (core goal)
+│   ├── Nearest Neighbor
+│   │   └── Geometry, integer mapping
+│   ├── Bilinear
+│   │   └── Linear interpolation (DSP intuition)
+│   ├── Bicubic
+│   │   └── Kernel-based reconstruction
+│   └── Lanczos (optional)
+│
+├── STAGE 4: BOUNDARY HANDLING
+│   ├── Clamp
+│   ├── Mirror
+│   └── Zero padding
+│
+├── STAGE 5: FIXED-POINT (embedded mindset)
+│   ├── Q-format arithmetic
+│   ├── Deterministic math
+│   └── MCU / FPGA friendly
+│
+├── STAGE 6: PERFORMANCE
+│   ├── Cache-friendly loops
+│   ├── Separable filters
+│   ├── SIMD (SSE / NEON)
+│   └── Line buffers
+│
+├── STAGE 7: QUALITY EVALUATION
+│   ├── Visual inspection
+│   ├── PSNR / SSIM
+│   └── Trade-offs (sharp vs smooth)
+│
+├── STAGE 8: EXTENSIONS (optional)
+│   ├── Classical SR (edge-aware)
+│   ├── Multi-frame SR
+│   └── Video scaling
+│
+└── STAGE 9: AI BACKEND (future, optional)
+    ├── Trained model (external)
+    ├── ONNX / inference only
+    └── Plugged into same API
+
+
+
+
+[ File (JPG/PNG) ]
+        ↓
+[ Decode (stb) ]
+        ↓
+[ Raw Pixels in RAM ]   ← STAGE 1 + 2
+        ↓
+[ Mathematical Processing ] ← STAGE 3–6
+        ↓
+[ Raw Pixels in RAM ]
+        ↓
+[ Encode (PNG) ]
+        ↓
+[ File you can see ]
