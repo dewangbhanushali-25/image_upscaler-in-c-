@@ -29,6 +29,7 @@ upsr_image_t* upsr_load_image(const char *filename)
 
 if(!raw) {
     printf("ERROR :FAILED to load %s\n",filename);
+    printf("reason : %s\n",stbi_failure_reason());
     return NULL;
 
 }

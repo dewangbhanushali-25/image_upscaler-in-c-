@@ -1,0 +1,3 @@
+/home/dew/CLionProjects/image_upsacler/main/build/CMakeFiles/test_image.dir
+/home/dew/CLionProjects/image_upsacler/main/build/CMakeFiles/edit_cache.dir
+/home/dew/CLionProjects/image_upsacler/main/build/CMakeFiles/rebuild_cache.dir

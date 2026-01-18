@@ -7,7 +7,7 @@
 #include <math.h>
 int main()
 {
-    upsr_image_t *img = upsr_load_image("input.png");
+    upsr_image_t *img = upsr_load_image("diddy.png");
     if (!img) return 1;
 
     printf("loaded : %d * %d ,channels = %d\n",img->width, img->height, img->channels);
