@@ -1,29 +1,40 @@
-//
-// Created by dew on 1/14/26.
-//
 #include <stdio.h>
 #include "upsr_image.h"
 #include "upsr_io.h"
-#include <math.h>
+#include "upsr_resize.h"
+
+//upsr_image_t * upsr_resize_nn(upsr_image_t * src, int dst_w, int dst_h);
+
 int main()
 {
-    upsr_image_t *img = upsr_load_image("diddy.png");
-    if (!img) return 1;
-
-    printf("loaded : %d * %d ,channels = %d\n",img->width, img->height, img->channels);
-    /*
-     * simple operation:
-     * invert colors(very visible)
-     */
-
-    int total = img->width*img->height*img->channels;
-    for (int i=0;i<total;i++) {
-        img->data[i]=255 - img->data[i];
+    // Load input image
+    upsr_image_t *src = upsr_load_image("diddy.png");
+    if (!src) {
+        printf("Failed to load input.jpg\n");
+        return 1;
     }
-upsr_save_png("output.png",img);
-    upsr_image_free(img);
+
+    printf("Source: %d x %d, channels = %d\n",
+           src->width, src->height, src->channels);
+
+    // Upscale by 2x
+    int dst_w = src->width * 2;
+    int dst_h = src->height * 2;
+
+    upsr_image_t *dst = upsr_resize_nn(src, dst_w, dst_h);
+    if (!dst) {
+        printf("Resize failed\n");
+        upsr_image_free(src);
+        return 1;
+    }
+
+    // Save output
+    upsr_save_png("output_nn.png", dst);
+
+    // Cleanup
+    upsr_image_free(src);
+    upsr_image_free(dst);
+
+    printf("Saved output_nn.png\n");
     return 0;
-
-
-
 }

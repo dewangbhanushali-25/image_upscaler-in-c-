@@ -27,9 +27,10 @@ include_directories(
 add_executable(test_image
         src/image.c
         src/io_stb.c
+        src/resize_nn.c
         examples/test_image.c
+        src/resize_bilinear.c
 )
-
 # -------------------------------
 # Link math library (IMPORTANT!)
 # -------------------------------
