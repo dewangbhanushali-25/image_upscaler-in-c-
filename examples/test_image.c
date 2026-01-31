@@ -21,7 +21,7 @@ int main()
     int dst_w = src->width * 2;
     int dst_h = src->height * 2;
 
-    upsr_image_t *dst = upsr_resize_nn(src, dst_w, dst_h);
+    upsr_image_t *dst = upsr_resize_bicubic(src, dst_w, dst_h);
     if (!dst) {
         printf("Resize failed\n");
         upsr_image_free(src);
@@ -29,7 +29,7 @@ int main()
     }
 
     // Save output
-    upsr_save_png("output_nn.png", dst);
+    upsr_save_png("output_bicubic.png", dst);
 
     // Cleanup
     upsr_image_free(src);

@@ -30,6 +30,7 @@ add_executable(test_image
         src/resize_nn.c
         examples/test_image.c
         src/resize_bilinear.c
+        src/resize_bicubic.c
 )
 # -------------------------------
 # Link math library (IMPORTANT!)
