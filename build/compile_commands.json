@@ -13,8 +13,26 @@
 },
 {
   "directory": "/home/dew/CLionProjects/image_upsacler/main/build",
+  "command": "/usr/bin/gcc -I/home/dew/CLionProjects/image_upsacler/main/include -I/home/dew/CLionProjects/image_upsacler/main/third_party/stb -g -std=gnu2x -Wall -Wextra -Wpedantic -o CMakeFiles/test_image.dir/src/resize_nn.c.o -c /home/dew/CLionProjects/image_upsacler/main/src/resize_nn.c",
+  "file": "/home/dew/CLionProjects/image_upsacler/main/src/resize_nn.c",
+  "output": "CMakeFiles/test_image.dir/src/resize_nn.c.o"
+},
+{
+  "directory": "/home/dew/CLionProjects/image_upsacler/main/build",
   "command": "/usr/bin/gcc -I/home/dew/CLionProjects/image_upsacler/main/include -I/home/dew/CLionProjects/image_upsacler/main/third_party/stb -g -std=gnu2x -Wall -Wextra -Wpedantic -o CMakeFiles/test_image.dir/examples/test_image.c.o -c /home/dew/CLionProjects/image_upsacler/main/examples/test_image.c",
   "file": "/home/dew/CLionProjects/image_upsacler/main/examples/test_image.c",
   "output": "CMakeFiles/test_image.dir/examples/test_image.c.o"
+},
+{
+  "directory": "/home/dew/CLionProjects/image_upsacler/main/build",
+  "command": "/usr/bin/gcc -I/home/dew/CLionProjects/image_upsacler/main/include -I/home/dew/CLionProjects/image_upsacler/main/third_party/stb -g -std=gnu2x -Wall -Wextra -Wpedantic -o CMakeFiles/test_image.dir/src/resize_bilinear.c.o -c /home/dew/CLionProjects/image_upsacler/main/src/resize_bilinear.c",
+  "file": "/home/dew/CLionProjects/image_upsacler/main/src/resize_bilinear.c",
+  "output": "CMakeFiles/test_image.dir/src/resize_bilinear.c.o"
+},
+{
+  "directory": "/home/dew/CLionProjects/image_upsacler/main/build",
+  "command": "/usr/bin/gcc -I/home/dew/CLionProjects/image_upsacler/main/include -I/home/dew/CLionProjects/image_upsacler/main/third_party/stb -g -std=gnu2x -Wall -Wextra -Wpedantic -o CMakeFiles/test_image.dir/src/resize_bicubic.c.o -c /home/dew/CLionProjects/image_upsacler/main/src/resize_bicubic.c",
+  "file": "/home/dew/CLionProjects/image_upsacler/main/src/resize_bicubic.c",
+  "output": "CMakeFiles/test_image.dir/src/resize_bicubic.c.o"
 }
 ]
