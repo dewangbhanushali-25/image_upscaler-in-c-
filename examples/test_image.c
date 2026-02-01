@@ -3,38 +3,55 @@
 #include "upsr_io.h"
 #include "upsr_resize.h"
 
-//upsr_image_t * upsr_resize_nn(upsr_image_t * src, int dst_w, int dst_h);
-
 int main()
 {
-    // Load input image
+    /* Load input image ONCE */
     upsr_image_t *src = upsr_load_image("diddy.png");
     if (!src) {
-        printf("Failed to load input.jpg\n");
+        printf("Failed to load image\n");
         return 1;
     }
 
     printf("Source: %d x %d, channels = %d\n",
            src->width, src->height, src->channels);
 
-    // Upscale by 2x
+    /* Desired output size */
     int dst_w = src->width * 2;
     int dst_h = src->height * 2;
 
-    upsr_image_t *dst = upsr_resize_bicubic(src, dst_w, dst_h);
-    if (!dst) {
-        printf("Resize failed\n");
-        upsr_image_free(src);
-        return 1;
+    /* ---------- Nearest Neighbor ---------- */
+    upsr_image_t *nn =
+        upsr_resize_nn(src, dst_w, dst_h);
+
+    if (nn) {
+        upsr_save_png("output_nn.png", nn);
+        printf("Saved output_nn.png\n");
     }
 
-    // Save output
-    upsr_save_png("output_bicubic.png", dst);
+    /* ---------- Bilinear ---------- */
+    upsr_image_t *bilinear =
+        upsr_resize_bilinear(src, dst_w, dst_h);
 
-    // Cleanup
+    if (bilinear) {
+        upsr_save_png("output_bilinear.png", bilinear);
+        printf("Saved output_bilinear.png\n");
+    }
+
+    /* ---------- Bicubic ---------- */
+    upsr_image_t *bicubic =
+        upsr_resize_bicubic(src, dst_w, dst_h);
+
+    if (bicubic) {
+        upsr_save_png("output_bicubic.png", bicubic);
+        printf("Saved output_bicubic.png\n");
+    }
+
+    /* ---------- Cleanup ---------- */
     upsr_image_free(src);
-    upsr_image_free(dst);
+    upsr_image_free(nn);
+    upsr_image_free(bilinear);
+    upsr_image_free(bicubic);
 
-    printf("Saved output_nn.png\n");
+    printf("All resizing done.\n");
     return 0;
 }

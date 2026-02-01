@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "upsr_image.h"
+#include "upsr_boundary.h"
 /*
  * upsr_resize_bilinear
  * ------------------------------\
@@ -61,8 +62,13 @@ for (int y_d = 0; y_d < dst_h; y_d++) {
         int x1 = x0 + 1;
         float dx = src_x - x0;
     /*Clamp X*/
-        if (x0 <0)x0 = 0;
-        if (x1 >=src->width)x1 = src->width - 1;
+        //if (x0 <0)x0 = 0;
+        //if (x1 >=src->width)x1 = src->width - 1; # uncomment this if you what to test only till resize bilinear
+        x0 = upsr_clamp(x0, 0, src->width  - 1);
+        x1 = upsr_clamp(x1, 0, src->width  - 1);
+        y0 = upsr_clamp(y0, 0, src->height - 1);
+        y1 = upsr_clamp(y1, 0, src->height - 1);
+
         /*
          * get pointers to the 4 neighboring source pixel
          *

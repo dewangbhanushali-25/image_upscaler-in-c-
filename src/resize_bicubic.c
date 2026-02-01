@@ -4,8 +4,11 @@
 #include <math.h>
 #include <stdint.h>
 #include <stddef.h>
+
+#include "upsr_boundary.h"
 #include "upsr_image.h"
 #include "upsr_resize.h"
+#include "upsr_boundary.h"
 
 
 /*
@@ -120,8 +123,11 @@ upsr_image_t* upsr_resize_bicubic(const upsr_image_t *src,int dst_w,int dst_h)
                     for (int n = -1; n <= 2; n++) {
                         int x = x_int + n;
                         // clamp X
-                        if (x < 0) x = 0;
-                        if (x >= src->width) x = src->width - 1;
+                        /*if (x < 0) x = 0;
+                        if (x >= src->width) x = src->width - 1;*/ // this is important till resize bicubic resize
+                        x = upsr_clamp(x, 0, src->width - 1);
+                        y = upsr_clamp(y, 0, src->height - 1);
+
                         //cubic weight in X direction
                         float wx = cubic_weight(src_x - x);
                         // combined 2D weight 
