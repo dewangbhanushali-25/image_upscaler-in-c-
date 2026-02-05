@@ -46,6 +46,15 @@ int main()
         printf("Saved output_bicubic.png\n");
     }
 
+    /*__--------------------bilearn_fixed-----------------*/
+    upsr_image_t *bilinear_fixed = upsr_resize_bilinear_fixed(src,dst_w,dst_h);
+
+    upsr_save_png("output_bilinear_fixed.png", bilinear_fixed);
+
+
+
+
+
     /* ---------- Cleanup ---------- */
     upsr_image_free(src);
     upsr_image_free(nn);

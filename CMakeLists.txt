@@ -33,6 +33,7 @@ add_executable(test_image
         src/resize_bicubic.c
         include/upsr_boundary.h
         examples/test.c
+        src/resize_bilinear_fixed.c
 )
 # -------------------------------
 # Link math library (IMPORTANT!)

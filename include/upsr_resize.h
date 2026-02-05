@@ -20,7 +20,7 @@ upsr_image_t* upsr_resize_bilinear(const upsr_image_t *src,int dst_w,int dst_h);
 
 upsr_image_t* upsr_resize_bicubic(const upsr_image_t *src, int dst_w, int dst_h);
 upsr_image_t* upsr_resize_nn(const upsr_image_t *src, int dst_w, int dst_h);
-
+upsr_image_t* upsr_resize_bilinear_fixed(const upsr_image_t *src, int dst_w, int dst_h);
 
 
 #endif //MAIN_UPSR_RESIZE_H
