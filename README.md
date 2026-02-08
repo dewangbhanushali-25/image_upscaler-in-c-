@@ -72,7 +72,7 @@ make
 
 ---
 
-## 8️⃣ Debugging & Lessons Learned ⭐ (VERY VALUABLE)
+## 8️⃣ Debugging & Lessons
 
 This section is *huge* for credibility.
 
