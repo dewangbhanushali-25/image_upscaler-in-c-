@@ -33,6 +33,7 @@ if(!raw) {
     return NULL;
 
 }
+    printf("width = %d height = %d channels = %d\n",width,height,channels);
 /*
  * CREATE OUR IMAGE STRUCTURE
  * THIS IS WHERE OWNERSHIP TRASNSFER TO US
@@ -69,5 +70,8 @@ int upsr_save_png(const char *filename,const upsr_image_t *img) {
      * width*channels(uint8_t=1 byte)
      */
     int stride = img->width*img->channels;
-    return stbi_write_png(filename,img->width,img->height,img->channels,img->data,stride);
+    int ok = stbi_write_png(filename,img->width,img->height,img->channels,img->data,stride);
+    if (!ok)
+        printf("error : failed to save %s\n",filename);
+    return ok;
 }
